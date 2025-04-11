@@ -1,1 +1,51 @@
 this file is for testing push on main branch
+<details>
+# HOW TO READ A CSV
+import pandas as pd
+df = pd.read_csv('your_file.csv')
+
+# HOW TO SEE WHAT'S IN YOUR DATA
+print(df.head())       # Shows first 5 rows
+print(df.columns)      # Shows all column names
+print(df.shape)        # Rows and columns count
+
+# FILTERING DATA
+df[df['Gender'] == 1]  # Only rows where gender is 1
+df[df['Age'] < 30]     # Only athletes younger than 30
+
+# FINDING MIN/MAX/COUNT
+df['Age'].min()
+df['Heart Rate'].max()
+df['Subject ID'].count()  # How many values are there (non-empty)
+
+# CREATING A NEW COLUMN
+def zone(hr):
+    if hr < 100:
+        return 'Zone 1'
+    elif hr <= 120:
+        return 'Zone 2'
+    else:
+        return 'Zone 3'
+
+df['HR Zone'] = df['Heart Rate'].apply(zone)
+
+# VALUE COUNTS
+df['HR Zone'].value_counts()
+
+# PLOTTING A SIMPLE BAR CHART
+import matplotlib.pyplot as plt
+df['HR Zone'].value_counts().plot(kind='bar')
+plt.title("HR Zone Distribution")
+plt.xlabel("Zone")
+plt.ylabel("Count")
+plt.show()
+
+# NUMPY ARRAY EXAMPLE
+import numpy as np
+arr = np.arange(12).reshape(3, 4)
+new_arr = np.where(arr % 2 == 0, np.square(arr), arr)
+
+# JSON CONVERSION
+df.head(10).to_json(orient='records')
+
+</details>
